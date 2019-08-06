@@ -1,0 +1,17 @@
+1. discover/extract information about a type during runtime: Runtime Type Discovery
+Type typeOfCalculation = calc.GetType();
+or
+Type typeOfCalculation = typeof(Calculation);
+
+2. Extracting piece of information from a type information, such as, field or method or property etc. information
+
+MethodInfo multiplyMethodInfo = typeOfCalculation.GetMethod("Multiply");
+
+3. Creating object of a type based on metadata of that type during runtime: Dynamic object creation
+ object objOfCalculation = Activator.CreateInstance(typeOfCalculation);
+
+4. invoking a member (method/property) based on metadata of that member: dynamic invocation
+ object result = multiplyMethodInfo.Invoke( objOfCalculation,
+                 			new object[] { 12, 13 });
+Console.WriteLine(result);
+
