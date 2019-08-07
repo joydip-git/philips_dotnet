@@ -1,0 +1,230 @@
+Windows Form Application:
+	Form --> System.Windows.Forms
+
+	class Form1:Form
+	{
+		//design (settings of controls)
+
+		//event handling code (event handlers)
+	}
+
+	File1: Form1.cs [ code + design ]
+	partial class Form1 --> event handlers
+
+	File2: Form1.Deigner.cs
+	partial class Form1 --> control settings
+
+	static class Program
+	{
+		static void Main()
+		{
+			//....
+			Form1 frm = new Form1();
+			Application.Run(frm);
+		}
+	}
+
+DDM: Display Driver Model
+  XP:    XPDM = user32.dll + GDI/GDI+
+  Vista: VDDM = user32.dll + DirectX
+
+WPF: Windows Presentation Foundation
+
+	windowsbase.dll
+	presentationcore.dll
+	presentationframework.dll
+	
+	Main two container classes/elements:
+	Window and Page 
+	
+	Design Language:
+	XAML => Zamel
+	
+	Application structure:
+	Part-1:
+	File1: Window1.xaml [design + XAML markup]
+	
+	<Window class="Window1">  <-- main window
+		<Grid> <-- layout control/panel
+			<button Name="123"  Width="abcd"				click="LogIn"> 
+				<-- control
+				Login
+			</button>
+		</Grid>
+	</Window>
+
+	Layout panels/controls:
+        	a. Grid
+		b. StackPanel
+		c. DockPanel
+		d. WrapPanel
+		e. Canvas
+
+	File2: Window1.xaml.cs [code=>event handlers]
+	partial class Window1: Window
+	{
+		public Window1()
+		{
+			InitializeComponent();
+		}
+		private void LogIn(object sender, RoutedEventArgs e)
+		{
+			//code
+		}
+	}
+
+	//not for editing
+	File3: Window1.g.cs [produced by a tool, after compilation. contains design in terms of C# classes]
+	partial class Window1
+	{
+		private void InitializeComponent()
+		{
+			//control settings (in C#)
+		}
+	}
+
+	Part-2: Application:
+	File1:App.xaml [Not designable though contains some markup]
+	<Application class="App"
+		     StartupUri="Window1.xaml">
+	</Application>
+	
+
+	File2: App.xaml.cs
+	partial class App: Application
+	{
+		public App()
+		{
+		}
+
+		public void GetData()
+		{
+			//code to access data, available throught the application, to all windows and pages
+		}
+	}
+
+	//not editable (produced after compilation by a tool-contaisn C# code related application start-up)
+	File3: App.g.cs
+	partial class App
+	{
+		static void Main()
+		{
+			//code
+		}
+	}
+
+XML: data describing language, NOT a formatting language like HTML
+<?xml version="1.0" ?>
+<!DTD ...!>
+	<students> <--root element (only one)
+		<student id="1">
+			<name>joydip</name>
+			<company>...</company>
+			<salary>...</salary>
+		</student>
+		<student id="2">
+			<name>vinod</name>
+			<company>...</company>
+			<salary>...</salary>
+		</student>
+	</students>
+DTD (Document Type Definition)
+Schema
+
+parsers:
+	Non-validating pareser (xml document is well-formed)
+	Validating parser (xml document is validated properly or not)
+
+XAML:
+schema
+
+class Student
+{
+  private string _name;
+  public Student()
+  {}
+  public Student(string name){ _name = name;}
+  public string Name
+  {
+        //set { _name = value; }
+	set => _name = value;
+	//get { return _name; }
+	get => _name;
+   }
+}
+
+class Program
+{
+	Main()
+	{
+		Button button1 = new Button();
+		button1.Name = 123;
+	}
+}
+
+class Button
+{
+  private string _name;
+  private int _width;
+  public Button()
+  {}
+  public Button(string name, int width){
+  _name = name; _width = width;}
+  public string Name
+  {
+        //set { _name = value; }
+	set => _name = value;
+	//get { return _name; }
+	get => _name;
+   }
+   public int Width
+  {
+        //set { _width = value; }
+	set => _width = value;
+	//get { return _width; }
+	get => _width;
+   }
+}
+
+WPF core concepts:
+1. Dependency Property & Attached Dependency Property
+2. Data Binding
+3. Routed Events
+4. Resource System
+5. Styles
+6. Templates
+7. Command System
+8. MVVM (Model View View-Model)
+
+Data Binding:
+
+source object [slider1 - control]
+	source property: Value
+
+	Binding 
+
+target object: [ txtBlock1 - control]
+	target property: TextProperty
+
+Data Binding
+	Direction Flow of data:
+	
+	
+	Types of data binding:
+	1. One way [Source ---> Target]
+	2. Two Way [Source ---> Target ---> Source]
+	3. One Way To Source [Source <--- Target]
+	4. One Time [Source ---> Target]
+	5. Default
+
+	Timing of updation:
+	a. Loose Focus [LostFocus]
+	b. as soon as property value gets changed
+
+	Binding binding = new Binding();
+	//1. configure source
+	//2. configure target
+	//3. configure data flow direction
+	//4. configure updation mode
+
+
