@@ -1,0 +1,92 @@
+Soultion name:
+ProductManagementSystem
+
+1st application: (library)
+Name: ProductManagementSystem.Entities
+class: Product
+class file: Product.cs
+
+2nd application: (library)
+Name: ProductManagementSystem.Repository
+class: ProductRepository (static)
+class file: ProductRepository.cs
+
+Method: static List<Product> GetProducts()
+data member: private static List<Product> products;
+static ctor: static ProductRepository(){}
+
+3rd application: (library)
+Name: ProductManagementSystem.DataAccessLayer
+
+interface: IProductDataAccessComponent<T>
+interface file: IProductDataAccessComponent.cs
+
+class: ProductDataAccessComponent
+implements: IProductDataAccessComponent<Product>
+class file: ProductDataAccessComponent.cs
+
+interface methods
+1. List<T> FetchAll()
+2. bool Add(T newItem)
+3. bool Remove(int id)
+4. bool Update(T updatedItem)
+
+class methods
+1. List<Product> FetcAll()
+2. bool Add(Product newItem)
+3. bool Remove(int id)
+4. bool Update(Product updatedItem)
+
+4th application: (library)
+Name: ProductManagementSystem.BusinessLayer
+
+interface: IProductBusinessComponent<T>
+interface file: IProductBusinessComponent.cs
+
+class: ProductBusinessComponent
+implements IProductBusinessComponent<Product>
+class file: ProductBusinessComponent.cs
+
+interface methods
+1. List<T> GetAll()
+2. bool Insert(T newItem)
+3. bool Delete(int id)
+4. bool Modify(T updatedItem)
+
+class methods
+1. List<Product> GetAll()
+2. bool Insert(Product newItem)
+3. bool Delete(int id)
+4. bool Modify(Product updatedItem)
+
+
+5th application: (library)
+Name: ProductManagementSystem.IOC
+class: ProductManagementContainer
+class file: ProductManagementContainer.cs
+
+Method:
+TInterface Create<TInterface,TClass>()
+
+6th application: (executable - WPF application)
+Name: ProductManagementSystem.UserInterface
+
+
+interface IA{ void Test();}
+class C:IA{ public void Test(){}}
+
+class Container
+{
+   public Tinterface Create<Tinterface,Tclass>()
+   {
+       object obj = Activator.CreateInstance(typeof(Tclass));
+        return obj as Tinterface;
+   }
+}
+
+class B{ 
+public void CallTest(){
+    IA obj = new Container().Create<IA,A>();
+    obj.Test();
+}
+}
